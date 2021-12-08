@@ -1,10 +1,12 @@
 import React from 'react';
+import Provider from './context/Provider';
+import Home from './pages/Home';
 
 const App = () => {
   return (
-    <div>
-      OI
-    </div>
+    <Provider>
+      <Home />
+    </Provider>
   );
 }
 

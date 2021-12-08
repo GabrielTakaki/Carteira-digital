@@ -1,0 +1,18 @@
+@import '../variables';
+
+.header {
+  position: absolute;
+  top: 0;
+  border-bottom: 1px solid rgb(139, 139, 139);
+  width: 100%;
+
+  .header__section {
+    display: flex;
+    justify-content: center;
+
+    .header__gif {
+      width: calc(6% + 40px);
+      margin-bottom: 20px;
+    }
+  }
+}
