@@ -7,3 +7,10 @@ export interface InputProps {
   text: string;
   id: string;
 }
+
+export interface CardProps {
+  fromCurrency: string;
+  toCurrency: string;
+  fromValue: string;
+  toValue: string;
+}
