@@ -17,6 +17,7 @@ describe('Verifica se há os componentes esperados na tela', () => {
 });
 describe('Verifica se ao inserir valores de conversão, é retornado o esperado', () => {
   it('Se após a requisição, mostra o componentes na tela', () => {
+    const today = new Date();
     cy.visit('http://localhost:3000/');
   
     cy.get('.form__input').type('100');
@@ -28,6 +29,7 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.card__header-from').should('be.visible');
     cy.get('.card__header-to').should('be.visible');
     cy.get('.card__header-date').should('be.visible');
+    cy.get('.card__header-date').contains(`Data de consulta: ${ today.toLocaleDateString() } ${ today.getHours() }:${ today.getMinutes() }`);
   });
 
   it('Se retorna mensagem de erro ao não preencher os campos de forma esperado', () => {
