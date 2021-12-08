@@ -22,18 +22,34 @@ const Home: React.FC = () => {
   const [currencySel, setCurrencySel] = useState('');
   const [getCurrency, setGetCurrency] = useState('');
 
-  const { currencies, realRate } = useContext(myContext);
+  
+  const { currencies, realRate, dolarRate, euroRate } = useContext(myContext);
+  
+  console.log(realRate)
+  console.log(dolarRate)
+  console.log(euroRate)
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const multipliedValue = value * realRate;
     if (value > 0 && currencySel !== '') {
       setClicke(true);
     }
     setCurrencySel('');
-    if (currencySel === 'EUR') setGetCurrency('Euros');
-    if (currencySel === 'USD') setGetCurrency('Dólares dos EUA');
-    if (currencySel === 'BRL') setGetCurrency('Reais brasileiro');
+    if (currencySel === 'EUR') {
+      setGetCurrency('Euros');
+      setValueTimesBrl((value * realRate));
+      setValueTimesUsd(value * dolarRate);
+    };
+    if (currencySel === 'USD'){
+      setGetCurrency('Dólares dos EUA');
+      setValueTimesEur(value * euroRate / dolarRate);
+      setValueTimesBrl(value * realRate / dolarRate);
+    }
+    if (currencySel === 'BRL') {
+      setGetCurrency('Reais brasileiro');
+      setValueTimesEur(value * euroRate / realRate);
+      setValueTimesUsd(value * dolarRate / realRate);
+    };
   }
 
   return (
@@ -65,9 +81,29 @@ const Home: React.FC = () => {
           className="form__button"
         />
       </form>
-      { clicked ? <CurrencyCard
+      { clicked && getCurrency === 'Euros' ? <CurrencyCard
         fromCurrency={ getCurrency }
         fromValue={ value }
+        toCurrency="Reais brasileiro"
+        toValue={ valueTimesBrl.toFixed(2) }
+        toCurrencyTwo="Dólares dos EUA"
+        toValueTwo={ valueTimesUsd.toFixed(2) }
+      /> : ''}
+      { clicked && getCurrency === 'Reais brasileiro' ? <CurrencyCard
+        fromCurrency={ getCurrency }
+        fromValue={ value }
+        toCurrency="Euros"
+        toValue={ valueTimesEur.toFixed(2) }
+        toCurrencyTwo="Dólares dos EUA"
+        toValueTwo={ valueTimesUsd.toFixed(2) }
+      /> : ''}
+       { clicked && getCurrency === 'Dólares dos EUA' ? <CurrencyCard
+        fromCurrency={ getCurrency }
+        fromValue={ value }
+        toCurrency="Euros"
+        toValue={ valueTimesEur.toFixed(2) }
+        toCurrencyTwo="Reais brasileiro"
+        toValueTwo={ valueTimesBrl.toFixed(2) }
       /> : ''}
     </>
   );

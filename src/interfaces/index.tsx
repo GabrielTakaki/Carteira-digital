@@ -18,9 +18,11 @@ export interface ButtonProps {
 
 export interface CardProps {
   fromCurrency: string;
-  fromValue: number | string;
+  fromValue: number;
   toCurrency?: string;
-  toValue?: string;
+  toValue?: number | string;
+  toValueTwo?: number | string;
+  toCurrencyTwo?: string;
 }
 
 export interface CurrenciesResults {
@@ -30,6 +32,8 @@ export interface CurrenciesResults {
 export interface DefaultValue {
   currencies: string[];
   realRate: number;
+  euroRate: number;
+  dolarRate: number;
 }
 
 export interface Props {

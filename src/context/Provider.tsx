@@ -43,7 +43,8 @@ const RecipesProvider: React.FC<Props> = ({ children }) => {
   const providerState = {
     currencies,
     realRate,
-    // findByAddress,
+    dolarRate,
+    euroRate,
   };
 
   return (
