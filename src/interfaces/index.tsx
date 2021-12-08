@@ -2,8 +2,9 @@ export interface LabelProps {
   type: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: number;
+  value: number | string;
   text: string;
+  placeholder?: string;
   id: string;
 }
 
@@ -17,7 +18,7 @@ export interface ButtonProps {
 
 export interface CardProps {
   fromCurrency: string;
-  fromValue: number;
+  fromValue: number | string;
   toCurrency?: string;
   toValue?: number | string;
   toValueTwo?: number | string;

@@ -8,10 +8,11 @@ import myContext from '../context/myContext';
 
 const Home: React.FC = () => {
   // Valor dado pelo usuario
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('');
 
   // Mostrar informacoes ao clicar no botao
   const [clicked, setClicke] = useState(false);
+  const [errorClick, setErrorClick] = useState(false);
 
   // Valor dado pelo usuario * valor da moeda
   const [valueTimesBrl, setValueTimesBrl] = useState(0);
@@ -27,24 +28,33 @@ const Home: React.FC = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    if (value > 0 && currencySel !== '') {
+    if (value.length > 0 && currencySel !== '') {
       setClicke(true);
+      setErrorClick(false);
+    } else {
+      setErrorClick(true);
     }
     setCurrencySel('');
     if (currencySel === 'EUR') {
       setGetCurrency('Euros');
-      setValueTimesBrl((value * realRate));
-      setValueTimesUsd(value * dolarRate);
+      setValueTimesBrl((parseFloat(value) * realRate));
+      setValueTimesUsd(parseFloat(value) * dolarRate);
+      console.log(valueTimesBrl.toFixed(2));
+      console.log(valueTimesUsd.toFixed(2))
     };
     if (currencySel === 'USD'){
       setGetCurrency('Dólares americanos');
-      setValueTimesEur(value * euroRate / dolarRate);
-      setValueTimesBrl(value * realRate / dolarRate);
+      setValueTimesEur(parseFloat(value) * euroRate / dolarRate);
+      setValueTimesBrl(parseFloat(value) * realRate / dolarRate);
+      console.log(euroRate);
+      console.log(realRate)
     }
     if (currencySel === 'BRL') {
       setGetCurrency('Reais brasileiro');
-      setValueTimesEur(value * euroRate / realRate);
-      setValueTimesUsd(value * dolarRate / realRate);
+      setValueTimesEur(parseFloat(value) * euroRate / realRate);
+      setValueTimesUsd(parseFloat(value) * dolarRate / realRate);
+      console.log(euroRate);
+      console.log(dolarRate)
     };
   }
 
@@ -59,6 +69,7 @@ const Home: React.FC = () => {
           onChange={ (e: any) => setValue(e.target.value) }
           text="Valor"
           type="number"
+          placeholder="50"
         />
         <label htmlFor="currencies">
           <p className="form__paragraph-select">Moeda</p>
@@ -73,8 +84,9 @@ const Home: React.FC = () => {
           onClick={ (e) => handleClick(e)}
           text="Converter"
           className="form__button"
-        />
+          />
       </form>
+      {errorClick ? <p className="error">Preencha todos os campos</p> : null}
       { clicked && getCurrency === 'Euros' ? <CurrencyCard
         fromCurrency={ getCurrency }
         fromValue={ value }
