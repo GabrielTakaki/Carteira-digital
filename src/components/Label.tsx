@@ -1,7 +1,7 @@
 import React from 'react';
 import { LabelProps } from '../interfaces';
 
-const Label: React.FC<LabelProps> = ({ text, type, value, onChange, id, name, placeholder }) => {
+const Label: React.FC<LabelProps> = ({ text, type, value, onChange, id, name }) => {
   return (
     <label className="form__label" htmlFor={ id }>
       <p className="form__paragraph">{ text }</p>
@@ -10,7 +10,6 @@ const Label: React.FC<LabelProps> = ({ text, type, value, onChange, id, name, pl
         onChange={ onChange }
         type={ type }
         name={ name }
-        placeholder={ placeholder }
         className="form__input"
       />
     </label>

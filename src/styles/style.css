@@ -154,6 +154,10 @@
   font-size: 1.6rem;
 }
 
+.card .card__section .card__header-date {
+  margin-top: 50px;
+}
+
 body {
   margin: 0;
   background-color: #a7a7a7;

@@ -24,10 +24,6 @@ const Home: React.FC = () => {
 
   
   const { currencies, realRate, dolarRate, euroRate } = useContext(myContext);
-  
-  console.log(realRate)
-  console.log(dolarRate)
-  console.log(euroRate)
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -55,14 +51,12 @@ const Home: React.FC = () => {
   return (
     <>
       <Navbar />
-      {console.log(currencies)}
       <form action="currencies" className="form">
         <Label
           id="value"
           name="value"
           value={ value }
           onChange={ (e: any) => setValue(e.target.value) }
-          placeholder="50"
           text="Valor"
           type="number"
         />

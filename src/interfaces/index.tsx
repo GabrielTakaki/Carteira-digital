@@ -2,8 +2,7 @@ export interface LabelProps {
   type: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: number | string;
-  placeholder: string;
+  value: number;
   text: string;
   id: string;
 }
