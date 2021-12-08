@@ -1,17 +1,20 @@
 export interface LabelProps {
-  // selectVal: string;
-  // selectOnChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   type: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: number;
-  placeholder?: string;
-  text?: string;
+  placeholder: string;
+  text: string;
   id: string;
-  // selectName: string;
-  // idSelect: string;
-  // options: string[];
 }
+
+export interface ButtonProps {
+  text: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  id?: string;
+  className?: string;
+}
+
 
 export interface CardProps {
   fromCurrency: string;
