@@ -159,4 +159,11 @@ body {
   margin: 0;
   background-color: #a7a7a7;
 }
+
+.error {
+  margin-bottom: -30px;
+  margin-top: 20px;
+  color: red;
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
