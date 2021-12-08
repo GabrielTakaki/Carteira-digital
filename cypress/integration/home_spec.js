@@ -5,7 +5,7 @@ describe('Verifica se há os componentes esperados na tela', () => {
     cy.get('.form').should('exist');
     cy.get('.form__label').should('exist');
     cy.get('.form__paragraph').should('be.visible');
-    cy.get('.form__input').should('be.visible').should('have.value', 0);
+    cy.get('.form__input').should('be.visible').should('have.value', '');
 
     cy.get('.form__paragraph-select').should('be.visible');
     cy.get('.form__select').should('be.visible').should('have.value', '');
@@ -34,5 +34,40 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__input').type('100');
     cy.get('.form__select').select('');
     cy.get('.form__button').click();
-  })
+
+    cy.get('.error').should('be.visible');
+  });
+
+  it('Se o valor quando em dólares convertido é o esperado em BRL e EUR', () => {
+    cy.get('.form__input').clear();
+    cy.get('.form__input').type('100');
+    cy.get('.form__select').select('USD');
+    cy.get('.form__button').click();
+
+    cy.get('.card__header-from').contains('100 Dólares americanos =');
+    cy.get('#to-one').contains('88.16 Euros');
+    cy.get('#to-two').contains('553.32 Reais brasileiro');
+  });
+
+  it('Se o valor quando em euros convertido é o esperado em BRL e USD', () => {
+    cy.get('.form__input').clear();
+    cy.get('.form__input').type('100');
+    cy.get('.form__select').select('EUR');
+    cy.get('.form__button').click();
+
+    cy.get('.card__header-from').contains('100 Euros =');
+    cy.get('#to-one').contains('627.60 Reais brasileiro');
+    cy.get('#to-two').contains('113.42 Dólares americanos');
+  });
+
+  it('Se o valor quando em reais convertido é o esperado em BRL e USD', () => {
+    cy.get('.form__input').clear();
+    cy.get('.form__input').type('100');
+    cy.get('.form__select').select('BRL');
+    cy.get('.form__button').click();
+
+    cy.get('.card__header-from').contains('100 Reais brasileiro =');
+    cy.get('#to-one').contains('15.93 Euros');
+    cy.get('#to-two').contains('18.07 Dólares americanos');
+  });
 });
