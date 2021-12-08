@@ -128,6 +128,32 @@
           transform: scale(0.96);
 }
 
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+}
+
+.card .card__section {
+  padding: 20px;
+}
+
+.card .card__section .card__header-from {
+  font-size: 1.5rem;
+  color: #3b3b3b;
+}
+
+.card .card__section .card__header-to {
+  font-size: 1.6rem;
+}
+
 body {
   margin: 0;
   background-color: #a7a7a7;

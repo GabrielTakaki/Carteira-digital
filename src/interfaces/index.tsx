@@ -2,7 +2,7 @@ export interface LabelProps {
   type: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: number;
+  value: number | string;
   placeholder: string;
   text: string;
   id: string;
@@ -18,9 +18,9 @@ export interface ButtonProps {
 
 export interface CardProps {
   fromCurrency: string;
-  toCurrency: string;
-  fromValue: string;
-  toValue: string;
+  fromValue: number | string;
+  toCurrency?: string;
+  toValue?: string;
 }
 
 export interface CurrenciesResults {
@@ -29,6 +29,7 @@ export interface CurrenciesResults {
 
 export interface DefaultValue {
   currencies: string[];
+  realRate: number;
 }
 
 export interface Props {
