@@ -90,10 +90,6 @@
   border-bottom: 1px solid black;
 }
 
-.form .form__paragraph {
-  opacity: 0.8;
-}
-
 .form .form__button {
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -159,6 +155,7 @@
 }
 
 body {
+  font-family: fantasy;
   margin: 0;
   background-color: #a7a7a7;
 }
