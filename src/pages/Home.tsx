@@ -39,22 +39,16 @@ const Home: React.FC = () => {
       setGetCurrency('Euros');
       setValueTimesBrl((parseFloat(value) * realRate));
       setValueTimesUsd(parseFloat(value) * dolarRate);
-      console.log(valueTimesBrl.toFixed(2));
-      console.log(valueTimesUsd.toFixed(2))
     };
     if (currencySel === 'USD'){
       setGetCurrency('Dólares americanos');
       setValueTimesEur(parseFloat(value) * euroRate / dolarRate);
       setValueTimesBrl(parseFloat(value) * realRate / dolarRate);
-      console.log(euroRate);
-      console.log(realRate)
     }
     if (currencySel === 'BRL') {
       setGetCurrency('Reais brasileiro');
       setValueTimesEur(parseFloat(value) * euroRate / realRate);
       setValueTimesUsd(parseFloat(value) * dolarRate / realRate);
-      console.log(euroRate);
-      console.log(dolarRate)
     };
   }
 
