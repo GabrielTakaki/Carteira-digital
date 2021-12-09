@@ -42,24 +42,24 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
 
   it('Se o valor quando em dólares convertido é o esperado em BRL e EUR', () => {
     cy.get('.form__input').clear();
-    cy.get('.form__input').type('100');
+    cy.get('.form__input').type('1');
     cy.get('.form__select').select('USD');
     cy.get('.form__button').click();
 
-    cy.get('.card__header-from').contains('100 Dólares americanos =');
-    cy.get('#to-one').contains('88.16 Euros');
-    cy.get('#to-two').contains('553.32 Reais brasileiro');
+    cy.get('.card__header-from').contains('1 Dólares americanos =');
+    cy.get('#to-one').contains('0.88 Euros');
+    cy.get('#to-two').contains('5.53 Reais brasileiro');
   });
 
   it('Se o valor quando em euros convertido é o esperado em BRL e USD', () => {
     cy.get('.form__input').clear();
-    cy.get('.form__input').type('100');
+    cy.get('.form__input').type('1');
     cy.get('.form__select').select('EUR');
     cy.get('.form__button').click();
 
-    cy.get('.card__header-from').contains('100 Euros =');
-    cy.get('#to-one').contains('627.60 Reais brasileiro');
-    cy.get('#to-two').contains('113.42 Dólares americanos');
+    cy.get('.card__header-from').contains('1 Euros =');
+    cy.get('#to-one').contains('6.28 Reais brasileiro');
+    cy.get('#to-two').contains('1.13 Dólares americanos');
   });
 
   it('Se o valor quando em reais convertido é o esperado em BRL e USD', () => {
