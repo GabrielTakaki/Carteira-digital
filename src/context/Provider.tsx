@@ -4,6 +4,7 @@ import myContext from './myContext';
 import { Props } from '../interfaces';
 
 const RecipesProvider: React.FC<Props> = ({ children }) => {
+
   // Poderia pegar dinamicamente. Porem, endpoint que permite isto, é pago.
   const [realRate, setRealRate] = useState(0);
   const [dolarRate, setDolarRate] = useState(0);

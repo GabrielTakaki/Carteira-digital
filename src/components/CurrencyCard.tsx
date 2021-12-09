@@ -10,7 +10,7 @@ const CurrencyCard: React.FC<CardProps> = ({ fromCurrency, fromValue, toCurrency
         <h2 className="card__header-to" id="to-one">{ `${ toValue }  ${ toCurrency }` }</h2>
         <h2 className="card__header-to" id="to-two">{ `${ toValueTwo }  ${ toCurrencyTwo }` }</h2>
         <h4 className="card__header-date">
-          { `Data de consulta: ${ today.toLocaleDateString() } ${ today.getHours() }:${ today.getMinutes() }` }
+          { `Data da consulta: ${ today.toLocaleDateString() } ${ today.getHours() }:${ today.getMinutes() }` }
         </h4>
       </section>
     </div>
