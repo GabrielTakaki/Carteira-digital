@@ -74,7 +74,7 @@ const Home: React.FC = () => {
         <label htmlFor="currencies">
           <p className="form__paragraph-select">Moeda</p>
           <select name="currencySel" value={ currencySel } onChange={ (e) => setCurrencySel(e.target.value) } id="currencies" className="form__select">
-            {/* <option value="" className="form__option">Selecione</option> */}
+            <option value="" className="form__option">Selecione</option>
           {currencies.map((currency: string, index: number) => (
             <option className="form__option" key={ index } value={ currency }>{ currency }</option>
           ))}
