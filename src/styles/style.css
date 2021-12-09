@@ -54,6 +54,10 @@
   border-bottom: 1px solid black;
 }
 
+.form .form__select .form__option {
+  background-color: #a7a7a7;
+}
+
 .form .form__paragraph-select {
   margin-left: 10px;
 }
