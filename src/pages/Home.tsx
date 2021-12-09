@@ -24,7 +24,7 @@ const Home: React.FC = () => {
   const [getCurrency, setGetCurrency] = useState('');
 
   
-  const { currencies, realRate, dolarRate, euroRate } = useContext(myContext);
+  const { realRate, dolarRate, euroRate } = useContext(myContext);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -75,9 +75,9 @@ const Home: React.FC = () => {
           <p className="form__paragraph-select">Moeda</p>
           <select name="currencySel" value={ currencySel } onChange={ (e) => setCurrencySel(e.target.value) } id="currencies" className="form__select">
             <option value="" className="form__option">Selecione</option>
-          {currencies.map((currency: string, index: number) => (
-            <option className="form__option" key={ index } value={ currency }>{ currency }</option>
-          ))}
+            <option className="form__option" value="BRL">Real</option>
+            <option className="form__option" value="USD">Dólar americano</option>
+            <option className="form__option" value="EUR">Euro</option>
           </select>
         </label>
         <Button

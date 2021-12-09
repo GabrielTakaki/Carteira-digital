@@ -30,7 +30,6 @@ export interface CurrenciesResults {
 }
 
 export interface DefaultValue {
-  currencies: string[];
   realRate: number;
   euroRate: number;
   dolarRate: number;

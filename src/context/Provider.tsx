@@ -4,8 +4,6 @@ import myContext from './myContext';
 import { Props } from '../interfaces';
 
 const RecipesProvider: React.FC<Props> = ({ children }) => {
-  const [currencies, setCurrencies] = useState<string[]>([]);
-
   // Poderia pegar dinamicamente. Porem, endpoint que permite isto, é pago.
   const [realRate, setRealRate] = useState(0);
   const [dolarRate, setDolarRate] = useState(0);
@@ -16,9 +14,6 @@ const RecipesProvider: React.FC<Props> = ({ children }) => {
       try {
         const response = await fetch('http://api.exchangeratesapi.io/v1/latest?access_key=226e45afd420262b5cea9678d7caddfd');
         const data = await response.json();
-        const filteredData = [data.base, ...Object.keys(data.rates)]
-          .filter((currency: string) => currency === 'EUR' || currency === 'USD' || currency === 'BRL');
-        const removeRepeated = [...Array.from(new Set(filteredData))];
 
         // EUR atual cotação
         const euroCurreny = Object.keys(data.rates)[46];
@@ -31,8 +26,6 @@ const RecipesProvider: React.FC<Props> = ({ children }) => {
         // USD atual cotacao
         const dolarCurrency = Object.keys(data.rates)[149];
         setDolarRate(data.rates[dolarCurrency]);
-
-        return setCurrencies(removeRepeated);
       } catch (e) {
         console.log(e);
       }
@@ -41,7 +34,6 @@ const RecipesProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   const providerState = {
-    currencies,
     realRate,
     dolarRate,
     euroRate,
