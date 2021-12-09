@@ -1,5 +1,3 @@
-const fetchMock = require('../mocks/fetch');
-
 describe('Verifica se há os componentes esperados na tela', () => {
   it('Se formulário para preencher valor e moeda está presente', () => {
     cy.visit('http://localhost:3000/');
@@ -43,16 +41,34 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
   });
 
   it('Se o valor quando em dólares convertido é o esperado em BRL e EUR', () => {
-    cy.get('.form__input').clear();
-    cy.get('.form__input').type('1');
-    cy.get('.form__select').select('USD');
-    cy.get('.form__button').click();
+    cy.request('http://api.exchangeratesapi.io/v1/latest?access_key=226e45afd420262b5cea9678d7caddfd')
+      .then((response) => {
+        expect(response.body).to.have.property('rates');
+        const euro = Object.keys(response.body.rates)[46];
+        const euroCurrency = response.body.rates[euro];
 
-    cy.get('.card__header-from').contains('1 Dólares americanos =');
-    // cy.get('#to-one').contains('0.88 Euros');
-    // cy.get('#to-two').contains('5.53 Reais brasileiro');
-    cy.get('#to-one').should('be.visible');
-    cy.get('#to-two').should('be.visible');
+        const real = Object.keys(response.body.rates)[19];
+        const realCurreny = response.body.rates[real];
+
+        const dolar = Object.keys(response.body.rates)[149];
+        const dolarCurrency = response.body.rates[dolar];
+
+        cy.get('.form__input').clear();
+        cy.get('.form__input').type('1');
+        cy.get('.form__select').select('USD');
+        cy.get('.form__button').click();
+
+        cy.get('.card__header-from').contains('1 Dólares americanos =');
+        cy.get('#to-one')
+          .contains(
+            `${ (euroCurrency / dolarCurrency).toFixed(2) } Euros`
+          );
+        cy.get('#to-two')
+          .contains(
+            `${ (realCurreny / dolarCurrency).toFixed(2) } Reais brasileiros`
+          );
+      });
+
   });
 
   it('Se o valor quando em euros convertido é o esperado em BRL e USD', () => {
@@ -62,7 +78,7 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__button').click();
 
     cy.get('.card__header-from').contains('1 Euros =');
-    // cy.get('#to-one').contains('6.29 Reais brasileiro');
+    // cy.get('#to-one').contains(`${ (realCurreny).toFixed(2) } Reais brasileiros`);
     // cy.get('#to-two').contains('1.13 Dólares americanos');
     cy.get('#to-one').should('be.visible');
     cy.get('#to-two').should('be.visible');
@@ -74,7 +90,7 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__select').select('BRL');
     cy.get('.form__button').click();
 
-    cy.get('.card__header-from').contains('100 Reais brasileiro =');
+    cy.get('.card__header-from').contains('100 Reais brasileiros =');
     // cy.get('#to-one').contains('15.89 Euros');
     // cy.get('#to-two').contains('17.94 Dólares americanos');
     cy.get('#to-one').should('be.visible');

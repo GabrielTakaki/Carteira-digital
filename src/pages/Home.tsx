@@ -46,7 +46,7 @@ const Home: React.FC = () => {
       setValueTimesBrl(parseFloat(value) * realRate / dolarRate);
     }
     if (currencySel === 'BRL') {
-      setGetCurrency('Reais brasileiro');
+      setGetCurrency('Reais brasileiros');
       setValueTimesEur(parseFloat(value) * euroRate / realRate);
       setValueTimesUsd(parseFloat(value) * dolarRate / realRate);
     };
@@ -84,12 +84,12 @@ const Home: React.FC = () => {
       { clicked && getCurrency === 'Euros' ? <CurrencyCard
         fromCurrency={ getCurrency }
         fromValue={ value }
-        toCurrency="Reais brasileiro"
+        toCurrency="Reais brasileiros"
         toValue={ valueTimesBrl.toFixed(2) }
         toCurrencyTwo="Dólares americanos"
         toValueTwo={ valueTimesUsd.toFixed(2) }
       /> : ''}
-      { clicked && getCurrency === 'Reais brasileiro' ? <CurrencyCard
+      { clicked && getCurrency === 'Reais brasileiros' ? <CurrencyCard
         fromCurrency={ getCurrency }
         fromValue={ value }
         toCurrency="Euros"
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
         fromValue={ value }
         toCurrency="Euros"
         toValue={ valueTimesEur.toFixed(2) }
-        toCurrencyTwo="Reais brasileiro"
+        toCurrencyTwo="Reais brasileiros"
         toValueTwo={ valueTimesBrl.toFixed(2) }
       /> : ''}
     </>

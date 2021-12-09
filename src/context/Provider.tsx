@@ -15,7 +15,6 @@ const RecipesProvider: React.FC<Props> = ({ children }) => {
       try {
         const response = await fetch('http://api.exchangeratesapi.io/v1/latest?access_key=226e45afd420262b5cea9678d7caddfd');
         const data = await response.json();
-        console.log(data)
 
         // EUR atual cotação
         const euroCurreny = Object.keys(data.rates)[46];
