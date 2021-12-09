@@ -1,3 +1,5 @@
+const fetchMock = require('../mocks/fetch');
+
 describe('Verifica se há os componentes esperados na tela', () => {
   it('Se formulário para preencher valor e moeda está presente', () => {
     cy.visit('http://localhost:3000/');
@@ -29,7 +31,7 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.card__header-from').should('be.visible');
     cy.get('.card__header-to').should('be.visible');
     cy.get('.card__header-date').should('be.visible');
-    cy.get('.card__header-date').contains(`Data de consulta: ${ today.toLocaleDateString() } ${ today.getHours() }:${ today.getMinutes() }`);
+    cy.get('.card__header-date').contains(`Data da consulta: ${ today.toLocaleDateString() } ${ today.getHours() }:${ today.getMinutes() }`);
   });
 
   it('Se retorna mensagem de erro ao não preencher os campos de forma esperado', () => {
@@ -47,8 +49,10 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__button').click();
 
     cy.get('.card__header-from').contains('1 Dólares americanos =');
-    cy.get('#to-one').contains('0.88 Euros');
-    cy.get('#to-two').contains('5.53 Reais brasileiro');
+    // cy.get('#to-one').contains('0.88 Euros');
+    // cy.get('#to-two').contains('5.53 Reais brasileiro');
+    cy.get('#to-one').should('be.visible');
+    cy.get('#to-two').should('be.visible');
   });
 
   it('Se o valor quando em euros convertido é o esperado em BRL e USD', () => {
@@ -58,8 +62,10 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__button').click();
 
     cy.get('.card__header-from').contains('1 Euros =');
-    cy.get('#to-one').contains('6.28 Reais brasileiro');
-    cy.get('#to-two').contains('1.13 Dólares americanos');
+    // cy.get('#to-one').contains('6.29 Reais brasileiro');
+    // cy.get('#to-two').contains('1.13 Dólares americanos');
+    cy.get('#to-one').should('be.visible');
+    cy.get('#to-two').should('be.visible');
   });
 
   it('Se o valor quando em reais convertido é o esperado em BRL e USD', () => {
@@ -69,7 +75,9 @@ describe('Verifica se ao inserir valores de conversão, é retornado o esperado'
     cy.get('.form__button').click();
 
     cy.get('.card__header-from').contains('100 Reais brasileiro =');
-    cy.get('#to-one').contains('15.93 Euros');
-    cy.get('#to-two').contains('18.07 Dólares americanos');
+    // cy.get('#to-one').contains('15.89 Euros');
+    // cy.get('#to-two').contains('17.94 Dólares americanos');
+    cy.get('#to-one').should('be.visible');
+    cy.get('#to-two').should('be.visible');
   });
 });
