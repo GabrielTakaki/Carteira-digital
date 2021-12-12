@@ -1,4 +1,4 @@
-# <p align=center> Boas vindas ao projeto BuscadorCEP! </p>
+# <p align=center> Boas vindas ao projeto Careteira digital! </p>
 
 
 ---
