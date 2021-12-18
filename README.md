@@ -6,7 +6,7 @@
 # Intruções para rodar o projeto  :pencil:
 
 1. Clone o repositório
-  * `git@github.com:GabrielTakaki/Carteira-digital.git`
+  * `git@github.com:gabrieltakaki/Carteira-digital.git`
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd Carteira-digital`
 
